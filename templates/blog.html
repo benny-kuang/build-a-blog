@@ -6,8 +6,7 @@
 
         {% for blog in posted_blog %}
         <div>
-            <h2>{{blog.title}}</h2>
-            <span class="error">{{title_error}}</span>
+            <h2><a href="./selected_blog?id={{blog.id}}">{{blog.title}}</a></h2>
             <p>{{blog.body}}</p>
             <span class="error">{{body_error}}</span>
         </div>

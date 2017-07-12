@@ -25,10 +25,17 @@ def index():
     return render_template('blog.html',title="My Blog!", 
         posted_blog=posted_blog)
 
+@app.route('/selected_blog', methods=['GET'])
+def selected_blog():
+    blog_id = request.args.get('id')
+    blog_post = Blog.query.filter_by(id=blog_id).first()
+    return render_template('selectedblog.html', selected_blog = blog_post)
+
 @app.route('/newpost', methods=['POST', 'GET'])
 def new_blog():
     if request.method == 'POST':
         #display errors for if no input in title or body
+        # TODO: create better error display using flash 
         title_error = ""
         body_error = ""
         blog_title = request.form['title']
@@ -38,7 +45,7 @@ def new_blog():
             title_error = "Need a title"
         if blog_body == "":
             body_error = "Need a body"
-        # TODO: no errors, post blog, redirect to blog
+        # no errors, post blog, redirect to blog
         if not title_error and not body_error:
             db.session.add(new_blog)
             db.session.commit()
