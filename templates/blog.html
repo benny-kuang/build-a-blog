@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>Blog Posts</h2>
+
+        {% for blog in posted_blog %}
+        <div>
+            <h2>{{blog.title}}</h2>
+            <span class="error">{{title_error}}</span>
+            <p>{{blog.body}}</p>
+            <span class="error">{{body_error}}</span>
+        </div>
+        {% endfor %}
+
+{% endblock %}
