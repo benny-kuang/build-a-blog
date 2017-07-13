@@ -2,19 +2,23 @@
 
 {% block content %}
     <h1>New Blog Post</h1>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% for category, messages in messages %}
+    <div class="error"><p class="{{category}}">{{messages}}</p></div>
+    {% endfor %} 
+    {% endwith %}
     <form method="post">
         <label>
             <div>Title:</div>
             <input type="text" name="title"/>
-            <span class="error">{{title_error}}</span>
         </label>
         </label>
         <label>
             <div>Body:</div>
             <textarea name="body" rows="10" cols="50">{{body}}</textarea>
-            <span class="error">{{body_error}}</span>
         </label>
     <div><input type="submit"></div>
+
     </form>
     <hr/>
 
